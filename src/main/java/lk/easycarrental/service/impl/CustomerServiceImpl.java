@@ -2,6 +2,7 @@ package lk.easycarrental.service.impl;
 
 import lk.easycarrental.dto.CustomerDTO;
 import lk.easycarrental.entity.Customer;
+import lk.easycarrental.exception.NotFoundException;
 import lk.easycarrental.exception.ValidateException;
 import lk.easycarrental.repo.CustomerRepo;
 import lk.easycarrental.service.CustomerService;
@@ -50,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customer.isPresent()) {
             return mapper.map(customer.get(), CustomerDTO.class);
         }
-        return null;
+        throw new ValidateException("There is no customer for this customer id");
     }
 
     @Override
@@ -62,7 +63,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean updateCustomer(CustomerDTO dto) {
-
         if (customerRepo.existsById(dto.getCustomerNIC())) {
             customerRepo.save(mapper.map(dto, Customer.class));
             return true;

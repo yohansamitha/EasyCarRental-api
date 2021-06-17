@@ -20,6 +20,6 @@ public class Customer {
     private String contact;
     private String email;
     private String password;
-    private String NICImagePath;
-    private String LicenseImagePath;
+    private String nICImagePath;
+    private String licenseImagePath;
 }
