@@ -18,7 +18,9 @@ import javax.persistence.OneToOne;
 public class VehicleMaintenance {
     @Id
     private String maintenanceID;
+    private String maintenanceTime;
     private String maintenanceDate;
+    private String vehicle_number;
     private String status;
 
     @OneToOne(cascade = CascadeType.ALL)

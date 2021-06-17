@@ -15,12 +15,13 @@ import java.sql.Date;
 @Data
 public class Payment {
     @Id
-    String paymentID;
-    Date payment_date;
-    double full_payment;
-    double standard_payment;
-    double excess_amount;
-    double excess;
-    double damage_waiver;
+    private String paymentID;
+    private String bookingID;
+    private Date payment_date;
+    private double full_payment;
+    private double standard_payment;
+    private double excess_amount;
+    private double excess;
+    private double damage_waiver;
 
 }

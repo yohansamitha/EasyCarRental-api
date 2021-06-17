@@ -12,9 +12,11 @@ import javax.persistence.Id;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
 public class DriverDTO {
-    String driverLicenseNumber;
-    String name;
-    String gmail;
-    String address;
-    String contact;
+    private String driverLicenseNumber;
+    private String user_Id;
+    private String name;
+    private String gmail;
+    private String address;
+    private String contact;
+    private String salary;
 }

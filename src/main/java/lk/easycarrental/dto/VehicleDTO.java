@@ -20,7 +20,8 @@ public class VehicleDTO {
     private String brand;
     private String frontView;
     private String backView;
-    private String sideView;
+    private String rightSideView;
+    private String leftSideView;
     private String interior;
     private String numberOfPassengers;
     private String transmissionType;

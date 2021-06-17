@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class BookingDTO {
     private String bookingID;
-    private String driver_NIC;
-    private String customer_NIC;
+    private String driverLicenseNumber;
+    private String customerNIC;
+    private String vehicle_number;
     private String booking_date;
     private String departure_date;
-    private String vehicle_number;
     private String arrival_date;
     private String booking_type;
     private String start_mileage;

@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class VehicleMaintenanceDTO {
     private String maintenanceID;
+    private String maintenanceTime;
     private String maintenanceDate;
+    private String vehicle_number;
     private String status;
-    private Vehicle vehicle;
 }

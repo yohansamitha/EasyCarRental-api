@@ -13,7 +13,8 @@ import javax.persistence.Id;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
 public class UserDTO {
-    private String userName;
+    private String user_Id;
+    private String email;
     private String password;
     private String post;
 }

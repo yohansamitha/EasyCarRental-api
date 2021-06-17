@@ -16,11 +16,11 @@ import javax.persistence.OneToOne;
 public class Driver {
     @Id
     private String driverLicenseNumber;
+    private String user_Id;
     private String name;
     private String gmail;
     private String address;
     private String contact;
+    private String salary;
 
-    @OneToOne(mappedBy = "driver")
-    private Salary salary;
 }
