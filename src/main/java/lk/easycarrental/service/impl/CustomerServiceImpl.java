@@ -55,7 +55,9 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO searchCustomer(String id) {
         Optional<Customer> customer = customerRepo.findById(id);
         if (customer.isPresent()) {
-            return mapper.map(customer.get(), CustomerDTO.class);
+            CustomerDTO map = mapper.map(customer.get(), CustomerDTO.class);
+            map.setUserDTO(mapper.map(customer.get().getUser(), UserDTO.class));
+            return map;
         }
         throw new ValidateException("There is no customer for this customer id");
     }
