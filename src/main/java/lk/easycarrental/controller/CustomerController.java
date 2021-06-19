@@ -39,7 +39,9 @@ public class CustomerController {
     }
 
     private String validateUserData(UserDTO userDTO) {
-        if (userDTO.getUser_Id().trim().length() <= 0) {
+        if (userDTO == null) {
+            return "No user details found";
+        } else if (userDTO.getUser_Id().trim().length() <= 0) {
             return "User User_Id is missing";
         } else if (userDTO.getEmail().trim().length() <= 0) {
             return "User Email is missing";
