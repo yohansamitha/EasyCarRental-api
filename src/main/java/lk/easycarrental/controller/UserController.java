@@ -49,18 +49,18 @@ public class UserController {
         return new ResponseEntity<>(new StandardResponse("200", "", allUsers), HttpStatus.OK);
     }*/
 
-    @GetMapping(params = {"userName"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StandardResponse> SearchUser(@RequestParam String userName) {
-        if (userName.trim().length() <= 0) {
+    @GetMapping(params = {"user_Id"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<StandardResponse> SearchUser(@RequestParam String user_Id) {
+        if (user_Id.trim().length() <= 0) {
             throw new NotFoundException("User userName cannot be empty");
         } else {
-            UserDTO UserDTO = userService.searchUser(userName);
+            UserDTO UserDTO = userService.searchUser(user_Id);
             return new ResponseEntity<>(new StandardResponse("200", "", UserDTO), HttpStatus.OK);
         }
     }
 
 
-    @DeleteMapping(params = {"id"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(params = {"user_Id"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StandardResponse> deleteUser(@RequestParam String id) {
         if (id.trim().length() <= 0) {
             throw new NotFoundException("User id cannot be empty");
