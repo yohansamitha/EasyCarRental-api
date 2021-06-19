@@ -17,7 +17,8 @@ public class CustomerDTO {
     private String contact;
     private String email;
     private String licenceNumber;
-    private String nICImagePath;
+    private String nicImagePath;
     private String licenseImagePath;
+    private UserDTO userDTO;
 
 }

@@ -1,10 +1,12 @@
 package lk.easycarrental.service.impl;
 
 import lk.easycarrental.dto.CustomerDTO;
+import lk.easycarrental.dto.UserDTO;
 import lk.easycarrental.entity.Customer;
-import lk.easycarrental.exception.NotFoundException;
+import lk.easycarrental.entity.User;
 import lk.easycarrental.exception.ValidateException;
 import lk.easycarrental.repo.CustomerRepo;
+import lk.easycarrental.repo.UserRepo;
 import lk.easycarrental.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -22,16 +24,20 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepo customerRepo;
-
+    @Autowired
+    private UserRepo userRepo;
     @Autowired
     private ModelMapper mapper;
 
 
     @Override
     public boolean addCustomer(CustomerDTO dto) {
+        System.out.println(dto.toString() + " dto");
+        System.out.println(dto.getUserDTO().toString() + " user");
         if (customerRepo.existsById(dto.getCustomerNIC())) {
             throw new ValidateException("Customer Already Exist");
         }
+        userRepo.save(mapper.map(dto.getUserDTO(), User.class));
         customerRepo.save(mapper.map(dto, Customer.class));
         return true;
     }
@@ -64,9 +70,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean updateCustomer(CustomerDTO dto) {
         if (customerRepo.existsById(dto.getCustomerNIC())) {
-            customerRepo.save(mapper.map(dto, Customer.class));
-            return true;
+            Optional<User> user = userRepo.findById(dto.getUser_Id());
+            if (user.isPresent()) {
+                dto.setUserDTO(mapper.map(user.get(), UserDTO.class));
+                customerRepo.save(mapper.map(dto, Customer.class));
+                return true;
+            } else {
+                throw new ValidateException("There is no User for this customer provided user id");
+            }
+        } else {
+            throw new ValidateException("There is no customer for this customer id");
         }
-        return false;
     }
 }

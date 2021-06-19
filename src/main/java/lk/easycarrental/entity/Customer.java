@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -22,6 +24,9 @@ public class Customer {
     private String contact;
     private String email;
     private String licenceNumber;
-    private String nICImagePath;
+    private String nicImagePath;
     private String licenseImagePath;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 }
