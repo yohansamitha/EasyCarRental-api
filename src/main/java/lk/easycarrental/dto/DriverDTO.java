@@ -19,5 +19,5 @@ public class DriverDTO {
     private String address;
     private String contact;
     private String salary;
-    private UserDTO userDTO;
+    private UserDTO user;
 }

@@ -9,6 +9,7 @@ import lk.easycarrental.repo.DriverRepo;
 import lk.easycarrental.repo.UserRepo;
 import lk.easycarrental.service.DriverService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,11 +33,11 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public boolean addDriver(DriverDTO dto) {
         System.out.println("dto : " + dto.toString());
-        System.out.println("user : " + dto.getUserDTO().toString());
+        System.out.println("user : " + dto.getUser().toString());
         if (driverRepo.existsById(dto.getDriverLicenseNumber())) {
             throw new ValidateException("Driver Already Exist");
         }
-        userRepo.save(mapper.map(dto.getUserDTO(), User.class));
+        userRepo.save(mapper.map(dto.getUser(), User.class));
         driverRepo.save(mapper.map(dto, Driver.class));
         return true;
     }
@@ -55,7 +56,7 @@ public class DriverServiceImpl implements DriverService {
         Optional<Driver> driver = driverRepo.findById(id);
         if (driver.isPresent()) {
             DriverDTO map = mapper.map(driver.get(), DriverDTO.class);
-            map.setUserDTO(mapper.map(driver.get().getUser(), UserDTO.class));
+            map.setUser(mapper.map(driver.get().getUser(), UserDTO.class));
             return map;
         }
         throw new ValidateException("There is no driver for this driver license number");
@@ -64,27 +65,8 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public ArrayList<DriverDTO> getAllDrivers() {
         List<Driver> all = driverRepo.findAll();
-        ArrayList<DriverDTO> allDriverDTO = new ArrayList<>();
-        for (Driver driver : all) {
-            allDriverDTO.add(new DriverDTO(
-                    driver.getDriverLicenseNumber(),
-                    driver.getUser_Id(),
-                    driver.getName(),
-                    driver.getGmail(),
-                    driver.getAddress(),
-                    driver.getContact(),
-                    driver.getSalary(),
-                    new UserDTO(
-                            driver.getUser().getUser_Id(),
-                            driver.getUser().getEmail(),
-                            driver.getUser().getPassword(),
-                            driver.getUser().getPost()
-                    )
-            ));
-        }
-        return allDriverDTO;
-//        return mapper.map(all, new TypeToken<ArrayList<DriverDTO>>() {
-//        }.getType());
+        return mapper.map(all, new TypeToken<ArrayList<DriverDTO>>() {
+        }.getType());
     }
 
     @Override
@@ -92,7 +74,7 @@ public class DriverServiceImpl implements DriverService {
         if (driverRepo.existsById(dto.getDriverLicenseNumber())) {
             Optional<User> user = userRepo.findById(dto.getUser_Id());
             if (user.isPresent()) {
-                dto.setUserDTO(mapper.map(user.get(), UserDTO.class));
+                dto.setUser(mapper.map(user.get(), UserDTO.class));
                 driverRepo.save(mapper.map(dto, Driver.class));
                 return true;
             } else {

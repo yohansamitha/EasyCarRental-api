@@ -26,7 +26,7 @@ public class CustomerController {
         System.out.println("customer post method " + dto.toString() + "\n user : ");
         String validateCustomerData = validateCustomerData(dto);
         if (validateCustomerData.equals("true")) {
-            String validateUserData = validateUserData(dto.getUserDTO());
+            String validateUserData = validateUserData(dto.getUser());
             if (validateUserData.equals("true")) {
                 customerService.addCustomer(dto);
                 return new ResponseEntity<>(new StandardResponse("201", "Done", dto), HttpStatus.CREATED);

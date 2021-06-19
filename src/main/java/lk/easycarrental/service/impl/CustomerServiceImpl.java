@@ -33,11 +33,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean addCustomer(CustomerDTO dto) {
         System.out.println(dto.toString() + " dto");
-        System.out.println(dto.getUserDTO().toString() + " user");
+        System.out.println(dto.getUser().toString() + " user");
         if (customerRepo.existsById(dto.getCustomerNIC())) {
             throw new ValidateException("Customer Already Exist");
         }
-        userRepo.save(mapper.map(dto.getUserDTO(), User.class));
+        userRepo.save(mapper.map(dto.getUser(), User.class));
         customerRepo.save(mapper.map(dto, Customer.class));
         return true;
     }
@@ -56,7 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
         Optional<Customer> customer = customerRepo.findById(id);
         if (customer.isPresent()) {
             CustomerDTO map = mapper.map(customer.get(), CustomerDTO.class);
-            map.setUserDTO(mapper.map(customer.get().getUser(), UserDTO.class));
+            map.setUser(mapper.map(customer.get().getUser(), UserDTO.class));
             return map;
         }
         throw new ValidateException("There is no customer for this customer id");
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerRepo.existsById(dto.getCustomerNIC())) {
             Optional<User> user = userRepo.findById(dto.getUser_Id());
             if (user.isPresent()) {
-                dto.setUserDTO(mapper.map(user.get(), UserDTO.class));
+                dto.setUser(mapper.map(user.get(), UserDTO.class));
                 customerRepo.save(mapper.map(dto, Customer.class));
                 return true;
             } else {
