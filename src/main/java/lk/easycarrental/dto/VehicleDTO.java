@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
 public class VehicleDTO {
-    private String vehicle_number;
+    private String vehicleNumber;
     private String brand;
     private String frontView;
     private String backView;

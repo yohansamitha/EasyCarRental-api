@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 public class Vehicle {
     @Id
-    private String vehicle_number;
+    private String vehicleNumber;
     private String brand;
     private String frontView;
     private String backView;
