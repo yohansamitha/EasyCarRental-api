@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
@@ -19,6 +21,9 @@ public class CustomerDTO {
     private String licenceNumber;
     private String nicImagePath;
     private String licenseImagePath;
+
     private UserDTO user;
+
+    private List<BookingDTO> booking;
 
 }

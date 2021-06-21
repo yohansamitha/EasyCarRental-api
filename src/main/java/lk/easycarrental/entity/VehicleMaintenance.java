@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -23,7 +23,7 @@ public class VehicleMaintenance {
     private String vehicle_number;
     private String status;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Vehicle vehicle;
 
 }

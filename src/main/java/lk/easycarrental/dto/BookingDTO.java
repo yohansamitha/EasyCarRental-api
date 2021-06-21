@@ -20,4 +20,10 @@ public class BookingDTO {
     private String start_mileage;
     private String end_mileage;
     private String booking_status;
+
+    private CustomerDTO customer;
+
+    private DriverDTO driver;
+
+    private VehicleDTO vehicle;
 }

@@ -6,10 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -33,6 +31,9 @@ public class Vehicle {
     private String PriceForExtraKM;
     private String color;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy ="vehicle")
-    VehicleMaintenance vehicleMaintenance;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehicle")
+    private List<VehicleMaintenance> vehicleMaintenance;
+
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    private List<Booking> booking;
 }

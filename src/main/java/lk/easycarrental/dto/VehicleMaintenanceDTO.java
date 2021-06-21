@@ -16,4 +16,6 @@ public class VehicleMaintenanceDTO {
     private String maintenanceDate;
     private String vehicle_number;
     private String status;
+
+    private Vehicle vehicle;
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.sql.Date;
 
 @Entity
@@ -23,5 +24,8 @@ public class Payment {
     private double excess_amount;
     private double excess;
     private double damage_waiver;
+
+    @OneToOne
+    private Booking booking;
 
 }

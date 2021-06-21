@@ -1,12 +1,11 @@
 package lk.easycarrental.dto;
 
+import lk.easycarrental.entity.Booking;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.sql.Date;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -21,4 +20,6 @@ public class PaymentDTO {
     private double excess_amount;
     private double excess;
     private double damage_waiver;
+
+    private Booking booking;
 }

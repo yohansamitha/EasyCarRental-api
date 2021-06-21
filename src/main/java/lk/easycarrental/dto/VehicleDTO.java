@@ -1,16 +1,14 @@
 package lk.easycarrental.dto;
 
 
+import lk.easycarrental.entity.Booking;
 import lk.easycarrental.entity.VehicleMaintenance;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
@@ -32,6 +30,7 @@ public class VehicleDTO {
     private String PriceForExtraKM;
     private String color;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy ="vehicle")
-    VehicleMaintenance vehicleMaintenance;
+    private VehicleMaintenance vehicleMaintenance;
+
+    private List<Booking> booking;
 }

@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
@@ -19,5 +18,8 @@ public class DriverDTO {
     private String address;
     private String contact;
     private String salary;
+
     private UserDTO user;
+
+    private List<BookingDTO> booking;
 }
