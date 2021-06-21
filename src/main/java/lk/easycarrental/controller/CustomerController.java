@@ -28,8 +28,11 @@ public class CustomerController {
         if (validateCustomerData.equals("true")) {
             String validateUserData = validateUserData(dto.getUser());
             if (validateUserData.equals("true")) {
-                customerService.addCustomer(dto);
-                return new ResponseEntity<>(new StandardResponse("201", "Done", dto), HttpStatus.CREATED);
+                if (customerService.addCustomer(dto)) {
+                    return new ResponseEntity<>(new StandardResponse("201", "Done", dto), HttpStatus.CREATED);
+                } else {
+                    return new ResponseEntity<>(new StandardResponse("500", "Internal Server Error Custom", dto), HttpStatus.INTERNAL_SERVER_ERROR);
+                }
             } else {
                 throw new NotFoundException(validateUserData);
             }
