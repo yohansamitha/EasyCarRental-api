@@ -105,7 +105,7 @@ public class VehicleController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StandardResponse> updateCustomer(@RequestBody VehicleDTO dto) {
+    public ResponseEntity<StandardResponse> updateVehicle(@RequestBody VehicleDTO dto) {
         String validate = validateVehicleData(dto);
         if (validate.equals("true")) {
             if (vehicleService.updateVehicle(dto)) {
