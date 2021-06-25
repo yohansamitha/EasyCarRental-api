@@ -19,6 +19,7 @@ public class AppWideExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity handleException(Exception e) {
+        System.out.println(e);
         return new ResponseEntity(new StandardResponse("500", "Internal Server Error Global error", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
