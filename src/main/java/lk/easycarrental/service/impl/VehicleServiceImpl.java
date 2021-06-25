@@ -9,6 +9,8 @@ import lk.easycarrental.service.VehicleService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +62,18 @@ public class VehicleServiceImpl implements VehicleService {
     public ArrayList<VehicleDTO> getAllVehicles() {
         List<Vehicle> all = vehicleRepo.findAll();
         return mapper.map(all, new TypeToken<ArrayList<VehicleDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public ArrayList<VehicleDTO> getAllVehiclesList(int pagination, int page) {
+        Page<Vehicle> all = vehicleRepo.findAll(PageRequest.of(page, pagination));
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+        for (Vehicle vehicle : all) {
+            System.out.println(vehicle);
+            vehicles.add(vehicle);
+        }
+        return mapper.map(vehicles, new TypeToken<ArrayList<VehicleDTO>>() {
         }.getType());
     }
 

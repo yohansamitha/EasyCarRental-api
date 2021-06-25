@@ -77,10 +77,19 @@ public class VehicleController {
         }
     }
 
+//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<StandardResponse> getAllVehicle() {
+//        ArrayList<VehicleDTO> allVehicles = vehicleService.getAllVehicles();
+//        return new ResponseEntity<>(new StandardResponse("200", "", allVehicles), HttpStatus.OK);
+//    }
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StandardResponse> getAllVehicle() {
-        ArrayList<VehicleDTO> allVehicles = vehicleService.getAllVehicles();
-        return new ResponseEntity<>(new StandardResponse("200", "", allVehicles), HttpStatus.OK);
+    public ResponseEntity<StandardResponse> getAllVehiclePaginate(@RequestParam int pagination, @RequestParam int page) {
+        System.out.println("vehicle get method " + pagination + " : " + page);
+        ArrayList<VehicleDTO> allVehicles = vehicleService.getAllVehiclesList(pagination, page);
+        ArrayList<VehicleDTO> allVehicles1 = vehicleService.getAllVehicles();
+        System.out.println(allVehicles1.size());
+        return new ResponseEntity<>(new StandardResponse("200", allVehicles1.size() + "", allVehicles), HttpStatus.OK);
     }
 
     @GetMapping(params = {"vehicleNumber"}, produces = MediaType.APPLICATION_JSON_VALUE)

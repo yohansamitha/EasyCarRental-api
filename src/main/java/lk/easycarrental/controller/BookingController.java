@@ -38,7 +38,7 @@ public class BookingController {
         System.out.println("save booking " + dto);
         String validateCustomerData = validateBookingData(dto);
         if (validateCustomerData.equals("true")) {
-
+            System.out.println("Valid booking");
             CustomerDTO customerDTO = customerService.searchCustomer(dto.getCustomerNIC().getCustomerNIC());
             dto.setCustomerNIC(customerDTO);
             VehicleDTO vehicleDTO = vehicleService.searchVehicle(dto.getVehicleNumber().getVehicleNumber());

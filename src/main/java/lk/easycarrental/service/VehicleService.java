@@ -14,4 +14,6 @@ public interface VehicleService {
     boolean deleteVehicle(String vehicleNumber);
 
     boolean updateVehicle(VehicleDTO dto);
+
+    ArrayList<VehicleDTO> getAllVehiclesList(int pagination, int page);
 }
