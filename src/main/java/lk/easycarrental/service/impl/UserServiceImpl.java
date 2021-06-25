@@ -65,4 +65,15 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public UserDTO validateUser(String email, String password) {
+        Optional<User> optionalUser = userRepo.findByEmail(email);
+        System.out.println(optionalUser + " find method");
+        if (optionalUser.isPresent()) {
+            return mapper.map(optionalUser.get(), UserDTO.class);
+        } else {
+            throw new ValidateException("There is no optionalUser for this email");
+        }
+    }
 }

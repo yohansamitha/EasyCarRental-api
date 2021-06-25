@@ -53,10 +53,10 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public DriverDTO searchDriver(String id) {
+        System.out.println("search driver id " + id);
         Optional<Driver> driver = driverRepo.findById(id);
         if (driver.isPresent()) {
             DriverDTO map = mapper.map(driver.get(), DriverDTO.class);
-            map.setUser(mapper.map(driver.get().getUser(), UserDTO.class));
             return map;
         }
         throw new ValidateException("There is no driver for this driver license number");

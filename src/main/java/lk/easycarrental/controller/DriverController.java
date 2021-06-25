@@ -23,7 +23,7 @@ public class DriverController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StandardResponse> saveDriver(@RequestBody DriverDTO dto) {
-        System.out.println("customer post method " + dto.toString() + "\n user : ");
+        System.out.println("driver post method " + dto.toString() + "\n user : ");
         String validateCustomerData = validateCustomerData(dto);
         if (validateCustomerData.equals("true")) {
             String validateUserData = validateUserData(dto.getUser());

@@ -16,6 +16,7 @@ import java.util.List;
 public class VehicleDTO {
     private String vehicleNumber;
     private String brand;
+    private String description;
     private String frontView;
     private String backView;
     private String rightSideView;

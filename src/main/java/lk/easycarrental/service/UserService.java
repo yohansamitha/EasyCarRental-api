@@ -10,4 +10,6 @@ public interface UserService {
     boolean deleteUser(String id);
 
     boolean updateUser(UserDTO dto);
+
+    UserDTO validateUser(String email, String password);
 }

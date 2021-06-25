@@ -1,7 +1,6 @@
 package lk.easycarrental.dto;
 
 
-import lk.easycarrental.entity.Vehicle;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +16,5 @@ public class VehicleMaintenanceDTO {
     private String vehicle_number;
     private String status;
 
-    private Vehicle vehicle;
+    private VehicleDTO vehicle;
 }

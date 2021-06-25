@@ -31,7 +31,7 @@ public class VehicleMaintenanceServiceImpl implements VehicleMaintenanceService 
     //  be update
     @Override
     public boolean addVehicleMaintenance(VehicleMaintenanceDTO dto) {
-        System.out.println(dto.toString() + " dto");
+        System.out.println("vehicle maintenance dto " + dto.toString());
         if (vehicleMaintenanceRepo.existsById(dto.getMaintenanceID())) {
             throw new ValidateException("Vehicle maintain Already Exist");
         }
