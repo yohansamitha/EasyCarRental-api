@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -28,6 +30,6 @@ public class Customer {
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Booking> booking;
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Booking> booking;
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.sql.Date;
 
@@ -17,7 +18,6 @@ import java.sql.Date;
 public class Payment {
     @Id
     private String paymentID;
-    private String bookingID;
     private Date payment_date;
     private double full_payment;
     private double standard_payment;
@@ -26,6 +26,7 @@ public class Payment {
     private double damage_waiver;
 
     @OneToOne
-    private Booking booking;
+    @JoinColumn(name = "bookingID", referencedColumnName = "bookingID", insertable = false, updatable = false)
+    private Booking bookingID;
 
 }

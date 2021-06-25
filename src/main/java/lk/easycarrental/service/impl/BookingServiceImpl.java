@@ -2,7 +2,6 @@ package lk.easycarrental.service.impl;
 
 import lk.easycarrental.dto.BookingDTO;
 import lk.easycarrental.entity.Booking;
-import lk.easycarrental.entity.Vehicle;
 import lk.easycarrental.exception.ValidateException;
 import lk.easycarrental.repo.BookingRepo;
 import lk.easycarrental.repo.CustomerRepo;
@@ -41,9 +40,19 @@ public class BookingServiceImpl implements BookingService {
         if (bookingRepo.existsById(dto.getBookingID())) {
             throw new ValidateException("Booking Already Exist");
         } else {
-            vehicleRepo.save(mapper.map(dto.getVehicle(), Vehicle.class));
-            bookingRepo.save(mapper.map(dto, Booking.class));
-            System.out.println("save booking ");
+//            vehicleRepo.save(mapper.map(dto.getVehicleNumber(), Vehicle.class));
+            Booking map = mapper.map(dto, Booking.class);
+            System.out.println(
+                    "\n ========================== \n " +
+                            map.toString() +
+                            "\n ========================== \n "
+            );
+            Booking save = bookingRepo.save(map);
+            System.out.println(
+                    "\n ========================== \n " +
+                            "save booking " + save +
+                            "\n ========================== \n "
+            );
             return true;
         }
     }

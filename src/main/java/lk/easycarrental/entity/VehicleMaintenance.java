@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -23,7 +23,8 @@ public class VehicleMaintenance {
     private String vehicle_number;
     private String status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Vehicle vehicle;
+    @ManyToOne
+    @JoinColumn(name = "vehicleNumber", referencedColumnName = "vehicleNumber", insertable = false, updatable = false)
+    private Vehicle vehicleNumber;
 
 }

@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
@@ -21,5 +19,5 @@ public class DriverDTO {
 
     private UserDTO user;
 
-    private List<BookingDTO> booking;
+//    private List<BookingDTO> booking;
 }

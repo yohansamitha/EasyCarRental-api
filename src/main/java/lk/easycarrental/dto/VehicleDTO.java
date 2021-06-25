@@ -1,14 +1,10 @@
 package lk.easycarrental.dto;
 
 
-import lk.easycarrental.entity.Booking;
-import lk.easycarrental.entity.VehicleMaintenance;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
@@ -31,7 +27,7 @@ public class VehicleDTO {
     private String PriceForExtraKM;
     private String color;
 
-    private VehicleMaintenance vehicleMaintenance;
+//    private VehicleMaintenance vehicleMaintenance;
 
-    private List<Booking> booking;
+//    private List<Booking> booking;
 }

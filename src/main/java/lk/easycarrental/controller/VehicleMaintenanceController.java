@@ -31,7 +31,7 @@ public class VehicleMaintenanceController {
         String validateVehicleData = validateVehicleMaintenanceData(dto);
         if (validateVehicleData.equals("true")) {
             VehicleDTO vehicleDTO = vehicleService.searchVehicle(dto.getVehicle_number());
-            dto.setVehicle(vehicleDTO);
+            dto.setVehicleNumber(vehicleDTO);
             if (service.addVehicleMaintenance(dto)) {
                 return new ResponseEntity<>(new StandardResponse("201", "Done", dto), HttpStatus.CREATED);
             } else {

@@ -13,7 +13,6 @@ import java.sql.Date;
 @Data
 public class PaymentDTO {
     private String paymentID;
-    private String bookingID;
     private Date payment_date;
     private double full_payment;
     private double standard_payment;
@@ -21,5 +20,5 @@ public class PaymentDTO {
     private double excess;
     private double damage_waiver;
 
-    private Booking booking;
+    private Booking bookingID;
 }

@@ -35,16 +35,16 @@ public class BookingController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StandardResponse> saveBooking(@RequestBody BookingDTO dto) {
-        System.out.println(dto + " save booking");
+        System.out.println("save booking " + dto);
         String validateCustomerData = validateBookingData(dto);
         if (validateCustomerData.equals("true")) {
 
-            CustomerDTO customerDTO = customerService.searchCustomer(dto.getCustomerNIC());
-            dto.setCustomer(customerDTO);
-            VehicleDTO vehicleDTO = vehicleService.searchVehicle(dto.getVehicle_number());
-            dto.setVehicle(vehicleDTO);
+            CustomerDTO customerDTO = customerService.searchCustomer(dto.getCustomerNIC().getCustomerNIC());
+            dto.setCustomerNIC(customerDTO);
+            VehicleDTO vehicleDTO = vehicleService.searchVehicle(dto.getVehicleNumber().getVehicleNumber());
+            dto.setVehicleNumber(vehicleDTO);
             DriverDTO d001 = driverService.searchDriver("D001");
-            dto.setDriver(d001);
+            dto.setDriverLicenseNumber(d001);
             System.out.println("booking : " + dto);
             if (bookingService.addBooking(dto)) {
                 return new ResponseEntity<>(new StandardResponse("201", "Done", dto), HttpStatus.CREATED);
@@ -58,9 +58,9 @@ public class BookingController {
     }
 
     private String validateBookingData(BookingDTO dto) {
-        if (dto.getCustomerNIC().trim().length() <= 0) {
+        if (dto.getCustomerNIC().getCustomerNIC().trim().length() <= 0) {
             return "booking CustomerNIC is missing";
-        } else if (dto.getVehicle_number().trim().length() <= 0) {
+        } else if (dto.getVehicleNumber().getVehicleNumber().trim().length() <= 0) {
             return "booking Vehicle number is missing";
         } else if (dto.getBooking_date().trim().length() <= 0) {
             return "booking Booking date is missing";

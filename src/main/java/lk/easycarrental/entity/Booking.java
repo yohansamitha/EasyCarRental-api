@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -17,9 +17,6 @@ import javax.persistence.OneToOne;
 public class Booking {
     @Id
     private String bookingID;
-    private String driverLicenseNumber;
-    private String customerNIC;
-    private String vehicle_number;
     private String booking_date;
     private String departure_date;
     private String arrival_date;
@@ -29,12 +26,15 @@ public class Booking {
     private String booking_status;
 
     @ManyToOne
-    private Customer customer;
+    @JoinColumn(name = "customerNIC", referencedColumnName = "customerNIC", insertable = false, updatable = false)
+    private Customer customerNIC;
 
     @ManyToOne
-    private Driver driver;
+    @JoinColumn(name = "driverLicenseNumber", referencedColumnName = "driverLicenseNumber", insertable = false, updatable = false)
+    private Driver driverLicenseNumber;
 
     @ManyToOne
-    private Vehicle vehicle;
+    @JoinColumn(name = "vehicleNumber", referencedColumnName = "vehicleNumber", insertable = false, updatable = false)
+    private Vehicle vehicleNumber;
 
 }

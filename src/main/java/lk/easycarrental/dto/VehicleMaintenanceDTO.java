@@ -16,5 +16,5 @@ public class VehicleMaintenanceDTO {
     private String vehicle_number;
     private String status;
 
-    private VehicleDTO vehicle;
+    private VehicleDTO vehicleNumber;
 }
